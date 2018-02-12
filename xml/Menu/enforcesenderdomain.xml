@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<menu>
+  <item>
+    <path>civicrm/enforcesender/settings</path>
+    <page_callback>CRM_Enforcesenderdomain_Form_EnforceSenderDomainSettings</page_callback>
+    <title>Enforce Sender Domain Settings</title>
+    <access_arguments>administer CiviCRM</access_arguments>
+  </item>
+</menu>
