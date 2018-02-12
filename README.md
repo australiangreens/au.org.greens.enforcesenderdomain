@@ -35,6 +35,12 @@ Configure the extension with the required information:
 - Exempt domain - Emails that use this domain (or its subdomains) in their From: address  won't have their From: address rewritten
 - Enforce sender domains - A checkbox that lets you (de)activate enforcement as desired 
 
+## To-Do
+
+- Add navigation menu item
+- Validate extension properly rewrites CiviMail (bulk) emails
+- Validate extension properly rewrites template-based emails
+
 ## Built With
 
 * [civix](https://github.com/totten/civix) - The CiviCRM Extension Builder tool
