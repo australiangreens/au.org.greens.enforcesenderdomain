@@ -186,15 +186,19 @@ function enforcesenderdomain_civicrm_validateForm($formName, &$fields, &$files, 
  */
 
 function enforcesenderdomain_civicrm_alterMailParams(&$params, $context) {
-  // Get extension settings
+  // Exit immediately if this is a CiviMail or CiviMosaico mailing
+  if ($context == 'civimail' || $context == 'flexmailer') {
+    return;
+  }
+  // Get extension settings values
   $result = civicrm_api3('Setting', 'get', array(
     'return' => array('enforcesenderdomain_is_active', 'enforcesenderdomain_from_address', 'enforcesenderdomain_match_domain'),
   ));
-  // The extension is active, so we have work to do
+  // If the extension is active, so we have work to do
   if (isset($result['values'][$result['id']]['enforcesenderdomain_is_active']) && $result['values'][$result['id']]['enforcesenderdomain_is_active']) {
     if (!strpos(strtolower($params['from']),strtolower($result['values'][$result['id']]['enforcesenderdomain_match_domain']))) {
       $params['replyTo'] = $params['from'];
-      if (preg_match('/"([^"]+)"/', $params['from'],$new_address) {
+      if (preg_match('/"([^"]+)"/', $params['from'],$new_address)) {
         $params['from'] = '"' . $new_address . '" <' . $result['values'][$result['id']]['enforcesenderdomain_from_address'] . '>';
       }
       else {
