@@ -1,0 +1,10 @@
+{
+     "name": "australian_greens/au.org.greens.enforcesenderdomain",
+     "type": "drupal-module",
+     "description": "CiviCRM Exension that rewrites outgoing email to enforce specific sender domains",
+     "require": {
+       "composer/installers": "~1.0",
+       "drupal/drupal": "~7"
+     }
+
+}
