@@ -199,7 +199,7 @@ function enforcesenderdomain_civicrm_alterMailParams(&$params, $context) {
     if (!strpos(strtolower($params['from']),strtolower($result['values'][$result['id']]['enforcesenderdomain_match_domain']))) {
       $params['replyTo'] = $params['from'];
       if (preg_match('/"([^"]+)"/', $params['from'],$new_address)) {
-        $params['from'] = '"' . $new_address . '" <' . $result['values'][$result['id']]['enforcesenderdomain_from_address'] . '>';
+        $params['from'] = '"' . $new_address[1] . '" <' . $result['values'][$result['id']]['enforcesenderdomain_from_address'] . '>';
       }
       else {
         $params['from'] = $result['values'][$result['id']]['enforcesenderdomain_from_address'];
