@@ -1,0 +1,7 @@
+steps:
+  - label: ':php: 8.1'
+    env:
+      PHP_IMAGE_VERSION: "8.1"
+    command: "php_check_syntax.sh"
+    agents:
+      queue: elastic
