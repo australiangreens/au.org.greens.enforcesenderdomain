@@ -102,9 +102,11 @@ function enforcesenderdomain_civicrm_alterMailParams(&$params, $context) {
   ));
   // If the extension is active, so we have work to do
   if (isset($result['values'][$result['id']]['enforcesenderdomain_is_active']) && $result['values'][$result['id']]['enforcesenderdomain_is_active']) {
-    if (!strpos(strtolower($params['from']),strtolower($result['values'][$result['id']]['enforcesenderdomain_match_domain']))) {
-      $params['replyTo'] = $params['from'];
-      if (preg_match('/"([^"]+)"/', $params['from'],$new_address)) {
+    // Ensure $params['from'] is a string to prevent deprecation warning
+    $fromAddress = (string) $params['from'];
+    if (!strpos(strtolower($fromAddress),strtolower($result['values'][$result['id']]['enforcesenderdomain_match_domain']))) {
+      $params['replyTo'] = $fromAddress;
+      if (preg_match('/"([^"]+)"/', $fromAddress, $new_address)) {
         $params['from'] = '"' . $new_address[1] . '" <' . $result['values'][$result['id']]['enforcesenderdomain_from_address'] . '>';
       }
       else {
